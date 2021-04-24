@@ -3,15 +3,15 @@ const sequelize = require("../db");
 module.exports = (sequelize, DataTypes) => {
     const Cart = sequelize.define("cart", {
         user_id: {
-            user_id: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.STRING,
+            allowNull: true
         },
         status: {
-            user_id: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.STRING,
+            allowNull: true
         },
         cart_items: {
-            user_id: DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         }
     })
