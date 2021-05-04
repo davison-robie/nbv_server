@@ -3,12 +3,15 @@ const CartItem = require("../db").import("../models/cart_item");
 let validateSession = require("../middleware/validate-session");
 
 // CREATE CART ITEM //
-router.post("/create", function (req, res) {
+router.post("/create", validateSession, function (req, res) {
     CartItem.create({
-        product_id:  req.body.cart_item.product_id,
-        cart_id: req.body.cart_item.cart_id,
-        price: req.body.cart_item.price,
-        quantity: req.body.cart_item.quantity
+        product_id: req.body.product_id,
+        cart_id: req.guest_user.id,
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price,
+        quantity: req.body.quantity,
+        image_url: req.body.image_url
     })
     .then(
         function createSuccess(cart_item) {
@@ -21,8 +24,8 @@ router.post("/create", function (req, res) {
 });
 
 // VIEW ALL CART ITEMS //
-router.get("/", (req, res) => {
-    CartItem.findAll()
+router.get("/", validateSession, (req, res) => {
+    CartItem.findAll({where: { cart_id: req.guest_user.id }})
     .then(cart_items => res.status(200).json(cart_items))
     .catch(err => res.status(500).json({ error: err }))
 });
@@ -30,7 +33,7 @@ router.get("/", (req, res) => {
 module.exports = router;
 
 // VIEW CART ITEM BY ID //
-router.get("/:id", (req, res) => {
+router.get("/:id", validateSession, (req, res) => {
     let id = req.params.id;
 
     CartItem.findAll({
@@ -62,6 +65,15 @@ router.delete("/delete/:id", validateSession, function (req, res) {
 
     CartItem.destroy(query)
     .then(() => res.status(200).json({ message: "Cart Item Removed"}))
+    .catch((err) => res.status(500).json({ error: err }));
+})
+
+// CLEAR CART //
+router.delete("/delete", validateSession, function (req, res) {
+    const query = { where: { cart_id: req.guest_user.id } };
+
+    CartItem.destroy(query)
+    .then(() => res.status(200).json({ message: "Cart Cleared"}))
     .catch((err) => res.status(500).json({ error: err }));
 })
 

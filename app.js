@@ -12,6 +12,7 @@ let order = require("./controllers/order_controller");
 
 sequelize.sync();
 //sequelize.sync({force: true});
+app.use(require('./middleware/headers'));
                                                                                        
 app.use(express.json());
 
