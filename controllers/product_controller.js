@@ -4,7 +4,10 @@ const router = require("express").Router();
 const Product = require("../db").import("../models/product");
 
 // CREATE NEW PRODUCT//
-router.post("/create", function (req, res) {
+router.post("/create", validateSession, function (req, res) {
+    if (req.user.roll != 'admin'){
+        res.json({message: "You are not an admin!!!"})
+    }
     Product.create({
         name:  req.body.product.name,
         description: req.body.product.description,
