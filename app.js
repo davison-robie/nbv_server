@@ -11,8 +11,8 @@ let cart = require("./controllers/cart_controller");
 let cart_item = require("./controllers/cart_item_controller");
 let order = require("./controllers/order_controller");
 
-// sequelize.sync();
-sequelize.sync({force: true});
+sequelize.sync();
+//sequelize.sync({force: true});
 app.use(require('./middleware/headers'));                                    
 app.use(express.json());
 // app.use(express.static(process.env.STATIC_DIR));
