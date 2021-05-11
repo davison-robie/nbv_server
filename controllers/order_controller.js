@@ -5,9 +5,8 @@ let validateSession = require("../middleware/validate-session");
 // CREATE NEW ORDER //
 router.post("/create", function (req, res) {
     Order.create({
-        user_id: req.body.order.user_id,
-        cart_id: req.body.order.cart_id,
-        status: req.body.order.status,
+        user_id: req.guest_user.id,
+        cart_items: req.body.order.cart_id,
         total: req.body.order.total,
         first_name: req.body.order.first_name,
         last_name: req.body.order.last_name,
@@ -16,6 +15,7 @@ router.post("/create", function (req, res) {
         address1: req.body.order.address1,
         address2: req.body.order.address2,
         city: req.body.order.city,
+        state: req.body.order.state,
         zip: req.body.order.zip,
         country: req.body.order.country
     })

@@ -6,11 +6,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        cart_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        status: {
+        cart_items: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -44,11 +40,15 @@ module.exports = (sequelize, DataTypes) => {
         },
         city: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
+        },
+        state: {
+            type: DataTypes.STRING,
+            allowNull: true
         },
         zip: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+            type: DataTypes.STRING,
+            allowNull: true
         },
         country: {
             type: DataTypes.STRING,

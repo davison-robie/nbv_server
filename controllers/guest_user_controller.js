@@ -8,7 +8,8 @@ router.post("/create", function (req, res) {
     GuestUser.create({
         username:  req.body.guest_user.username,
         email: req.body.guest_user.email,
-        password: bcrypt.hashSync(req.body.guest_user.password, 13)
+        password: bcrypt.hashSync(req.body.guest_user.password, 13),
+        role: "user"
     })
     .then(
         function createSuccess(guest_user) {

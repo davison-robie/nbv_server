@@ -25,7 +25,9 @@ router.post("/create", validateSession, function (req, res) {
 
 // VIEW ALL CART ITEMS //
 router.get("/", validateSession, (req, res) => {
-    CartItem.findAll({where: { cart_id: req.guest_user.id }})
+    const query = { where: { cart_id: req.guest_user.id } };
+    
+    CartItem.findAll(query)
     .then(cart_items => res.status(200).json(cart_items))
     .catch(err => res.status(500).json({ error: err }))
 });
