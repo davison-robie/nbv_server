@@ -1,22 +1,17 @@
-const { DataTypes } = require("sequelize/types");
 const sequelize = require("../db");
 
 module.exports = (sequelize, DataTypes) => {
     const Order = sequelize.define("order", {
         user_id: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
-        cart_id: {
-            type: DataTypes.NUMBER,
-            allowNull: false
-        },
-        status: {
+        cart_items: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        Total: {
-            type: DataTypes.NUMBER,
+        total: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         first_name: {
@@ -28,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         mobile: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: true
         },
         email: {
@@ -45,11 +40,15 @@ module.exports = (sequelize, DataTypes) => {
         },
         city: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
+        },
+        state: {
+            type: DataTypes.STRING,
+            allowNull: true
         },
         zip: {
-            type: DataTypes.number,
-            allowNull: false
+            type: DataTypes.STRING,
+            allowNull: true
         },
         country: {
             type: DataTypes.STRING,

@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize/types");
+// const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
     const GuestUser = sequelize.define("guest_user", {
@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
             unique: true
         },
         password: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        role: {
             type: DataTypes.STRING,
             allowNull: false
         },

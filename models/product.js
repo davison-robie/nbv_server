@@ -1,4 +1,3 @@
-const { DataTypes } = require("sequelize/types");
 const sequelize = require("../db");
 
 module.exports = (sequelize, DataTypes) => {
@@ -12,12 +11,15 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         price: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         quantity: {
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
+        },
+        image_url: {
+            type: DataTypes.STRING
         }
     })
     return Product;
